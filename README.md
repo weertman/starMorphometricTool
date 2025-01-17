@@ -1,5 +1,9 @@
 # starMorphometricTool
-Measures star areas on a checkerboard
+This is a demo of using a combination of a yolo11 instance segmentation model and opencv checkerboard calibration module to measure the area of stars, estimate arm lengths from center, and get a measurement of star shape anisotropy. Typical use of photos often relies on manual measurement of a calibration object (ruler) to get a px/measurement conversion for the image. This adds hassle and is a bit prone to error due to camera angle and lense effects. 
+
+To use this tool the first step is to place a non-square checker board of known checker sizes and counts infront of a static camera. The tool can then be triggered to find the checkerboard, its pretty good at this, if it fails it is either (A) your input dimensions for the checker board are wrong or (B) your lighting sucks. The checkerboard MUST be flat. Then, presuming your camera does not move, you can place stars onto the checker board to measure them. NOTE the best measurements will be within the middle of the checkerboard, if the star is off the checkerboard it will fail, there will be increasing measurement error on the sides of the checker board. PLACE THE STARS IN THE MIDDLE OF THE CHECKER BOARD :) .
+
+Behind the scenes the webcam's perspective is projected onto the checkerboard flattening then image onto it. This corrects for perspective error and provides accurate measurements if the star is in the middle of the checker board. The operation also neccesarily causes some reduction in resolution of the projected image as it is warped to the checkerboard, this is OK. 
 
 ![Local Image](images/demo.png)
 
