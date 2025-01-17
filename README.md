@@ -1,5 +1,5 @@
 # starMorphometricTool
-measures star areas on a checkerboard
+Measures star areas on a checkerboard
 
 ![Local Image](images/demo.png)
 
@@ -25,3 +25,12 @@ https://pytorch.org/get-started/locally/
 ```bash
 pip install PySide6 opencv-python-headless ultralytics numpy matplotlib scipy
 ```
+
+# Choosing a model
+Currently the package uses a nano sized model by default (its ok, not great, good for demos)
+if you wish to use a different model I've placed options into a dropbox folder
+```bash
+https://www.dropbox.com/scl/fo/gynp911wspftbuyzmoqxe/AG2gyWISAqav4282zeYvQdE?rlkey=t8ve0p8feh94i28a9669l43ov&st=wxzyixv7&dl=0
+```
+
+
