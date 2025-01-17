@@ -32,5 +32,9 @@ if you wish to use a different model I've placed options into a dropbox folder
 ```bash
 https://www.dropbox.com/scl/fo/gynp911wspftbuyzmoqxe/AG2gyWISAqav4282zeYvQdE?rlkey=t8ve0p8feh94i28a9669l43ov&st=wxzyixv7&dl=0
 ```
-
-
+You will then have to change the path to the model path
+```bash
+# Load YOLOv8 model
+path_model = os.path.join('..', '..', 'models', 'yolov8-n-pretrained.pt')
+self.yolo_model = YOLO(path_model)
+```
