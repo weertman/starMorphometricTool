@@ -5,6 +5,8 @@ To use this tool the first step is to place a non-square checker board of known 
 
 Behind the scenes the webcam's perspective is projected onto the checkerboard flattening then image onto it. This corrects for perspective error and provides accurate measurements if the star is in the middle of the checker board. The operation also neccesarily causes some reduction in resolution of the projected image as it is warped to the checkerboard, this is OK. 
 
+To find the arm tips the tool uses a contour finding and peak finding algorithms, you can adjust the parameters of these models on the fly to best find the arm tips. It will only work well for long arms (small arms are usually missed) and it is important to tune the parameters, although I've chosen pretty good defaults. Segmentation quality has a bit impact on the results. You can also rotate which found arm is the first arm based on visual reference to the madreporite, if you care.
+
 ![Local Image](images/demo.png)
 
 # Install instructions
