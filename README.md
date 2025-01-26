@@ -51,11 +51,17 @@ path_model = os.path.join('PATH TO YOUR MODEL')
 ```
 
 # Running the tool
-The tool is currently a demo and so you can run it simply by running the python script Yolov8WebCamStreamGUI.py
+the newest version of the tool can be run 
+```bash
+cd $full_path_project$/starMorphometricTool/src/starMorphometricTool
+python main.py
+```
+The older version can be run by running
+Yolov8WebCamStreamGUI.py
 e.g.,
 ```bash
-cd starMorphometricTool
-python src/starMorphometricTool/Yolov8WebCamStreamGUI.py
+cd $full_path_project$/starMorphometricTool/src/starMorphometricTool
+python Yolov8WebCamStreamGUI.py
 ```
 
 # Future TODO list
