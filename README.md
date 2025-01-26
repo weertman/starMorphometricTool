@@ -86,8 +86,10 @@ I've tested into before in other contexts and it seems to work remarkably well, 
 To do this we will use the checkerboard as a distance calibration and the segmentation to cut the volume where it meets the checkerboard. This should technically be possible, the big unknown is accuracy. While the other measure of this project have prinicipled underpining (camera calibration is reliable) this method would rely on a neural network which could have varying performance with lighting, checkboard, background info etc. Infact the best images probably would be fairly high resolution with some background context to help the model 'see'.
 
 ### 4. Expand morphometric analyses within and across measurement dates
+I have started this, but feel that I can make solutions as data becomes available. 
 
 ### 5. Add hidden class exclusion for working with the models (e.g., star/prey models exclude prey detections)
+
 
 
 
