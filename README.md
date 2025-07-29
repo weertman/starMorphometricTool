@@ -44,6 +44,8 @@ This app uses a combination of a sea star detecting and segmenting yolo11 instan
 - Add any relevant notes
 - Click **"Save Morphometrics"**
 - Data saved in organized folder structure:
+
+```
 measurements/
 └── group_name/
 └── specimen_id/
@@ -52,6 +54,7 @@ measurements/
 ├── morphometrics.json
 ├── corrected_mask.png
 └── corrected_object.png
+```
 
 ### Tips for Best Results
 - ⚠️ **Critical**: Keep specimen within checkerboard boundaries
