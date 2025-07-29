@@ -44,6 +44,29 @@ This app uses a combination of a sea star detecting and segmenting yolo11 instan
 - Add any relevant notes
 - Click **"Save Morphometrics"**
 - Data saved in organized folder structure:
+measurements/
+└── group_name/
+└── specimen_id/
+└── mm_dd_yyyy/
+└── mFolder_N/
+├── morphometrics.json
+├── corrected_mask.png
+└── corrected_object.png
+
+### Tips for Best Results
+- ⚠️ **Critical**: Keep specimen within checkerboard boundaries
+- 📏 Measurement accuracy decreases toward board edges
+- 💡 Use consistent, diffuse lighting to avoid shadows
+- 🎯 For specimens with short arms, manually adjust detection parameters
+- 🔄 Use "Re-run Morphometrics" tab to reanalyze saved specimens
+
+### Measurements Collected
+- Total area (mm²)
+- Number of arms detected
+- Individual arm lengths (mm)
+- Major/minor axis dimensions
+- Arm tip positions
+- Full contour coordinates
 
 ![Local Image](images/demo.png)
 
