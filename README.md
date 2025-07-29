@@ -20,6 +20,7 @@ This app uses a combination of a sea star detecting and segmenting yolo11 instan
 - Click **"Detect Checkerboard"**
   - Green overlay confirms successful detection
   - If detection fails: improve lighting, ensure full board visibility, verify dimensions
+  - You need to calibrate with your container full over water over the checkerboard so that it can take into account optical distortion of water
 
 ### Step 2: Capture Specimen
 - **Keep camera and checkerboard in exact same position**
