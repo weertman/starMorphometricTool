@@ -1,7 +1,7 @@
 # starMorphometricTool
 Use of photos for morphometrics often relies on manual measurement of a calibration object (ruler) to get a px/measurement conversion for the image. 
 
-This app uses a combination of a sea star detecting and segmenting yolo11 instance segmentation model and opencv checkerboard calibration module to measure the area of stars, estimate arm lengths from center, and get a measurement of star shape anisotropy. The calibration accounts for camera angle and optical distortion. Behind the scenes the webcam's perspective is projected onto the checkerboard flattening the image onto it. This corrects for perspective error and provides accurate measurements if the star is in the middle of the checker board. The operation also neccesarily causes some reduction in resolution of the projected image as it is warped to the checkerboard, this is OK. 
+This app uses a combination of a sea star detecting and segmenting yolo11 instance segmentation model and a opencv checkerboard calibration module to measure the area of stars, estimate arm lengths from center, and get a measurement of star shape anisotropy. Checkerboard calibration accounts for camera angle and optical distortion but comes with some caveats. The webcamera's perspective is projected onto the checkerboard flattening the image onto it. This corrects for perspective error and provides accurate measurements if the star is in the middle of the checker board. But, operation also neccesarily causes some reduction in resolution of the projected image as it is warped to the checkerboard, this is OK. If you move the camera after calibration you must recalibrate to the new location.
 
 ## How to Use
 
