@@ -6,8 +6,8 @@ This app uses a combination of a sea star detecting and segmenting yolo11 instan
 ## How to Use
 
 ### Initial Setup
-- Launch the application: `python main.py` from the `src/starMorphometricTool` directory
 - Connect a USB webcam (tested with Logitech C270)
+- Launch the application: `python main.py` from the `src/starMorphometricTool` directory
 - Prepare a **flat, non-square** checkerboard with known square dimensions
 
 ### Step 1: Calibrate with Checkerboard
