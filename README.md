@@ -1,15 +1,87 @@
 # starMorphometricTool
-Uses a combination of a sea star detecting and segmenting yolo11 instance segmentation model and opencv checkerboard calibration module to measure the area of stars, estimate arm lengths from center, and get a measurement of star shape anisotropy. Typical use of photos often relies on manual measurement of a calibration object (ruler) to get a px/measurement conversion for the image. This adds hassle and is a bit prone to error due to camera angle and lense effects. 
+Use of photos for morphometrics often relies on manual measurement of a calibration object (ruler) to get a px/measurement conversion for the image. 
 
-To use this tool the first step is to place a non-square checker board of known checker sizes and counts infront of a static camera. The tool can then be triggered to find the checkerboard, its pretty good at this, if it fails it is either (A) your input dimensions for the checker board are wrong or (B) your lighting sucks. The checkerboard MUST be flat. Then, presuming your camera does not move, you can place stars onto the checker board to measure them. NOTE the best measurements will be within the middle of the checkerboard, if the star is off the checkerboard it will fail, there will be increasing measurement error on the sides of the checker board. PLACE THE STARS IN THE MIDDLE OF THE CHECKER BOARD :) .
+This app uses a combination of a sea star detecting and segmenting yolo11 instance segmentation model and opencv checkerboard calibration module to measure the area of stars, estimate arm lengths from center, and get a measurement of star shape anisotropy. The calibration accounts for camera angle and optical distortion. Behind the scenes the webcam's perspective is projected onto the checkerboard flattening the image onto it. This corrects for perspective error and provides accurate measurements if the star is in the middle of the checker board. The operation also neccesarily causes some reduction in resolution of the projected image as it is warped to the checkerboard, this is OK. 
 
-Behind the scenes the webcam's perspective is projected onto the checkerboard flattening then image onto it. This corrects for perspective error and provides accurate measurements if the star is in the middle of the checker board. The operation also neccesarily causes some reduction in resolution of the projected image as it is warped to the checkerboard, this is OK. 
+To use this tool the first step is to install it and verify it works (see below instructions). 
+
+Once installed place a non-square checker board of known checker sizes and counts infront of a static web camera (we use a Logi C270 webcam). The app can then be triggered to find the checkerboard, its pretty good at this the checkerboard MUST be flat, if it fail to find the checkerboard it is either (A) your input dimensions for the checker board are wrong or (B) your lighting sucks or (C) you are occluding parts of the checkboard it must see the whole thing. 
+
+Then, keeping the same static camera arrangement, you can place stars onto the checker board to measure them. NOTE the best measurements will be within the middle of the checkerboard, if the star is off the checkerboard it will miss the part of the star that is off the board. There is increasing measurement error on the sides of the checker board. Rule of thumb PLACE THE STARS IN THE MIDDLE OF THE CHECKER BOARD then get detection.
 
 To find the arm tips the tool uses a contour finding and peak finding algorithms, you can adjust the parameters of these models on the fly to best find the arm tips. It will only work well for long arms (small arms are usually missed) and it is important to tune the parameters, although I've chosen pretty good defaults. Segmentation quality has a bit impact on the results. You can also rotate which found arm is the first arm based on visual reference to the madreporite, if you care.
 
 ![Local Image](images/demo.png)
 
 # Install instructions
+
+## Prerequisites
+
+### Installing Anaconda
+
+This tool requires Python 3.9, which is installed and managed via Anaconda. Anaconda is a free, open-source distribution for scientific computing that includes Python, the conda package manager, and many useful libraries. If you don't have Anaconda installed, follow these steps to download and install it.
+
+1. **Download Anaconda**:
+   - Visit the official [Anaconda download page](https://www.anaconda.com/download).
+   - Select the latest version of Anaconda for your operating system (Windows, macOS, or Linux). Choose the graphical installer if you're new to this process.
+   - Note: The tool uses Python 3.9, but Anaconda's latest version includes a newer Python (e.g., 3.13) by default. You can create a specific environment with Python 3.9 during setup (as shown in the installation instructions below).
+
+2. **Install Anaconda**:
+   Follow the platform-specific instructions below. The installation typically takes 10-20 minutes and requires about 3-5 GB of disk space.
+
+   #### Windows
+   - Double-click the downloaded `.exe` file (e.g., `Anaconda3-2025.06-1-Windows-x86_64.exe`).
+   - Follow the installation wizard:
+     - Agree to the license.
+     - Select "Just Me" (recommended for most users).
+     - Choose an installation location (default is fine).
+     - **Do not** check "Add Anaconda to my PATH environment variable" (recommended to avoid conflicts; use the Anaconda Prompt instead).
+     - Check "Register Anaconda as my default Python" if desired.
+   - Click "Install" and wait for completion.
+   - After installation, search for and open the "Anaconda Prompt" from the Start menu.
+
+   #### macOS
+   - Note: Anaconda 2025.06 is the last version with support for Intel-based macOS (osx-64). For Apple Silicon (arm64), use the appropriate installer.
+   - Double-click the downloaded `.pkg` file (e.g., `Anaconda3-2025.06-1-MacOSX-arm64.pkg` for Apple Silicon or `Anaconda3-2025.06-1-MacOSX-x86_64.pkg` for Intel).
+   - Follow the installation wizard:
+     - Agree to the license.
+     - Select an installation location (default is fine).
+   - The installer will add Anaconda to your PATH automatically.
+   - After installation, open the Terminal app (found in Applications > Utilities).
+
+   #### Linux
+   - Open a terminal and navigate to the download location (e.g., `cd ~/Downloads`).
+   - Run the installer script:
+     ```
+     bash Anaconda3-2025.06-1-Linux-x86_64.sh
+     ```
+     (Replace the filename with the one you downloaded.)
+   - Follow the prompts:
+     - Agree to the license by typing `yes`.
+     - Choose an installation location (default is `~/anaconda3`).
+     - Allow the installer to add Anaconda to your PATH by typing `yes` (this updates your `~/.bashrc` file).
+   - Close and reopen the terminal for changes to take effect.
+
+3. **Verify the Installation**:
+   - Open the Anaconda Prompt (Windows) or terminal (macOS/Linux).
+   - Run the following command:
+     ```
+     conda --version
+     ```
+     - You should see output like `conda 25.5.1` (version may vary).
+   - If it doesn't work, ensure Anaconda is added to your PATH or restart your computer.
+
+4. **Update Anaconda** (Optional but Recommended):
+   - In the Anaconda Prompt or terminal, run:
+     ```
+     conda update conda
+     ```
+   - Then update all packages:
+     ```
+     conda update --all
+     ```
+
+Once Anaconda is installed, proceed to the setup instructions below to create the environment for this tool.
 
 ### Set up anaconda env
 ```bash
