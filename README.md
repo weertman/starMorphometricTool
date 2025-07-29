@@ -3,13 +3,47 @@ Use of photos for morphometrics often relies on manual measurement of a calibrat
 
 This app uses a combination of a sea star detecting and segmenting yolo11 instance segmentation model and opencv checkerboard calibration module to measure the area of stars, estimate arm lengths from center, and get a measurement of star shape anisotropy. The calibration accounts for camera angle and optical distortion. Behind the scenes the webcam's perspective is projected onto the checkerboard flattening the image onto it. This corrects for perspective error and provides accurate measurements if the star is in the middle of the checker board. The operation also neccesarily causes some reduction in resolution of the projected image as it is warped to the checkerboard, this is OK. 
 
-To use this tool the first step is to install it and verify it works (see below instructions). 
+## How to Use
 
-Once installed place a non-square checker board of known checker sizes and counts infront of a static web camera (we use a Logi C270 webcam). The app can then be triggered to find the checkerboard, its pretty good at this the checkerboard MUST be flat, if it fail to find the checkerboard it is either (A) your input dimensions for the checker board are wrong or (B) your lighting sucks or (C) you are occluding parts of the checkboard it must see the whole thing. 
+### Initial Setup
+- Launch the application: `python main.py` from the `src/starMorphometricTool` directory
+- Connect a USB webcam (tested with Logitech C270)
+- Prepare a **flat, non-square** checkerboard with known square dimensions
 
-Then, keeping the same static camera arrangement, you can place stars onto the checker board to measure them. NOTE the best measurements will be within the middle of the checkerboard, if the star is off the checkerboard it will miss the part of the star that is off the board. There is increasing measurement error on the sides of the checker board. Rule of thumb PLACE THE STARS IN THE MIDDLE OF THE CHECKER BOARD then get detection.
+### Step 1: Calibrate with Checkerboard
+- **Position checkerboard**: Place it flat in front of the camera
+- **Enter parameters** in the left panel:
+  - Checkerboard rows (number of squares)
+  - Checkerboard columns (number of squares)  
+  - Square size in millimeters
+- Click **"Start Stream"** to view live feed
+- Click **"Detect Checkerboard"**
+  - Green overlay confirms successful detection
+  - If detection fails: improve lighting, ensure full board visibility, verify dimensions
 
-To find the arm tips the tool uses a contour finding and peak finding algorithms, you can adjust the parameters of these models on the fly to best find the arm tips. It will only work well for long arms (small arms are usually missed) and it is important to tune the parameters, although I've chosen pretty good defaults. Segmentation quality has a bit impact on the results. You can also rotate which found arm is the first arm based on visual reference to the madreporite, if you care.
+### Step 2: Capture Specimen
+- **Keep camera and checkerboard in exact same position**
+- Place specimen in **center of checkerboard** for best accuracy
+- Click **"Start Detections"** to activate YOLO model
+- Position specimen until detection box appears
+- Click **"Get Detection"** to capture
+
+### Step 3: Analyze Morphometrics
+- Click **"Run Morphometrics"** to process the specimen
+- **Adjust parameters** using sliders:
+  - **Smoothing Factor** (1-15): Reduces noise in contour
+  - **Prominence Factor** (0.01-1.0): Sensitivity for arm tip detection  
+  - **Distance Factor** (0-15): Minimum separation between arms
+  - **Arm Rotation**: Rotate which arm is labeled as #1
+- **Interactive editing** on polar plot:
+  - Click to add missed arm tips
+  - Shift+click to remove incorrect detections
+
+### Step 4: Save Results
+- Enter your 3-letter initials
+- Add any relevant notes
+- Click **"Save Morphometrics"**
+- Data saved in organized folder structure:
 
 ![Local Image](images/demo.png)
 
