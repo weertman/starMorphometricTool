@@ -136,31 +136,6 @@ cd $full_path_project$/starMorphometricTool/src/starMorphometricTool
 python Yolov8WebCamStreamGUI.py
 ```
 
-# Future TODO list
-
-### 1. Expand list USB cameras that can work 
-(e.g., GeT cameras and Basler Cameras) for higher resolution imaging. This is a bit.. complex to do and would require a fair bit of script reworking for each backend added but would make the tool more user friendly. o1 is really good at doing this :)
-
-### 2. Add auto madreporite segmentation for body axis detection
-madreporiteSegmentor now works 95% of the time, see..
-```bash
-https://github.com/weertman/madreporiteSegmentor
-```
-would be cool to add a one click auto rotation feature which the user can override if it fails.
-
-### 3. Add volume estimation
-So this is a bit speculation, and would have varying results with camera model and lighting, but under the correct conditions in theory it could work well..
-Not sure, but would be fun to test.. check out..
-```bash
-https://github.com/apple/ml-depth-pro
-```
-I've tested into before in other contexts and it seems to work remarkably well, would be interesting to see how close it's measurements can be to volumetric measures.
-To do this we will use the checkerboard as a distance calibration and the segmentation to cut the volume where it meets the checkerboard. This should technically be possible, the big unknown is accuracy. While the other measure of this project have prinicipled underpining (camera calibration is reliable) this method would rely on a neural network which could have varying performance with lighting, checkboard, background info etc. Infact the best images probably would be fairly high resolution with some background context to help the model 'see'.
-
-### 4. Expand morphometric analyses within and across measurement dates
-I have started this, but feel that I can make solutions as data becomes available. 
-
-### 5. Add hidden class exclusion for working with the models (e.g., star/prey models exclude prey detections)
 
 
 
