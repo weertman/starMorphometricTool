@@ -183,18 +183,12 @@ path_model = os.path.join('PATH TO YOUR MODEL')
 ```
 
 # Running the tool
-the newest version of the tool can be run 
+the tool can be run 
 ```bash
 cd $full_path_project$/starMorphometricTool/src/starMorphometricTool
 python main.py
 ```
-The older version can be run by running
-Yolov8WebCamStreamGUI.py
-e.g.,
-```bash
-cd $full_path_project$/starMorphometricTool/src/starMorphometricTool
-python Yolov8WebCamStreamGUI.py
-```
+
 
 
 
